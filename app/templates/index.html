@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block title %}用户 profile{% endblock %} {% block
+extra_css %}
+<!-- 页面特定CSS -->
+<style>
+  .user-info {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #eee;
+  }
+</style>
+{% endblock %} {% block content %}
+<p>这是一个使用Jinja2模板引擎渲染的页面。</p>
+
+{% if user %}
+<div class="user-info">
+  <h2>用户信息</h2>
+  <p>用户名: {{ user.name }}</p>
+  <p>邮箱: {{ user.email }}</p>
+  <p>年龄: {{ user.age }}</p>
+  <p>爱好: {{ user.hobbies|join(', ') }}</p>
+</div>
+{% else %}
+<p>请 <a href="/auth/login">登录</a> 查看用户信息。</p>
+{% endif %}
+
+<input
+  type="text"
+  class="layui-input"
+  id="ID-laydate-demo"
+  placeholder="yyyy-MM-dd"
+/>
+<button type="button" class="layui-btn layui-btn-sm" lay-on="load">
+  默认按钮
+</button>
+{% endblock %} {% block extra_js %} // 页面特定JS const laydate = layui.laydate;
+// 渲染日期选择器 laydate.render({ elem: "#ID-laydate-demo" }); // 按钮点击事件
+layui.use(['layer', 'util'], function() { const layer = layui.layer; const util
+= layui.util;
+document.querySelector('button[lay-on="load"]').addEventListener('click',
+function() { layer.msg('按钮被点击了！'); }); }); {% endblock %}

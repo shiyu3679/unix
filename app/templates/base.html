@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+    <!-- 公共CSS -->
+    <link
+      href="{{ url_for('static', path='layui/css/layui.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', path='css/header.css') }}"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+    </style>
+    <script src="{{ url_for('static', path='layui/layui.js') }}"></script>
+    {% block extra_css %}{% endblock %}
+  </head>
+  <body>
+    <!-- 公共头部 -->
+    <header class="header-container">
+
+      <nav class="header-nav">
+
+      </nav>
+    </header>
+
+    <!-- 页面内容区域 -->
+    <main>{% block content %}{% endblock %}</main>
+
+    <!-- 公共底部 -->
+    <footer>
+      <p>&copy; {{ now.year }} FastAPI示例项目</p>
+    </footer>
+
+    <!-- 公共JS -->
+    <script>
+      const util = layui.util;
+      // {% block extra_js %} {% endblock %}
+    </script>
+  </body>
+</html>
